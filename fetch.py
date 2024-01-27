@@ -6,13 +6,15 @@ import pandas as pd
 import mysql.connector
 from io import BytesIO
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
 
+load_dotenv()
 # MySQL Configuration
-MYSQL_HOST = "localhost"
-MYSQL_USER = "root"
-MYSQL_PASSWORD = "MysqlTouseef"
-MYSQL_DATABASE = "equity_data"
-MYSQL_TABLE = "bhavcopy"
+MYSQL_HOST = os.getenv('MYSQL_HOST')
+MYSQL_USER = os.getenv('MYSQL_USER')
+MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
+MYSQL_DATABASE = os.getenv('MYSQL_DATABASE')
+MYSQL_TABLE = os.getenv('MYSQL_TABLE')
 # BSE Bhavcopy URL
 BSE_URL = "https://www.bseindia.com/download/BhavCopy/Equity/EQ{date}_CSV.ZIP"
 # Mimic a browser user agent

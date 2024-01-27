@@ -1,9 +1,16 @@
 const { Sequelize } = require("sequelize");
-const sequelize = new Sequelize("equity_data", "root", "MysqlTouseef", {
-  host: "localhost",
-  dialect: "mysql",
-  /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
-});
+const dotenv = require("dotenv");
+dotenv.config();
+const sequelize = new Sequelize(
+  process.dotenv.MYSQL_DATABASE,
+  process.dotenv.MYSQL_USER,
+  process.dotenv.MYSQL_PASSWORD,
+  {
+    host: process.dotenv.MYSQL_HOST,
+    dialect: "mysql",
+    /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
+  }
+);
 
 const db = {
   dbconnect: async (req, res) => {
@@ -22,15 +29,15 @@ const db = {
       console.log("Unable to close the sequelize connection.");
     }
   },
-  query: async(query) => {
+  query: async (query) => {
     try {
-        const outcome = await sequelize.query(query);
-        return outcome;
+      const outcome = await sequelize.query(query);
+      return outcome;
     } catch (error) {
-        console.log("Unable to perform the given query!")
-        console.log(error);
+      console.log("Unable to perform the given query!");
+      console.log(error);
     }
-  }
+  },
 };
 
 module.exports = db;
