@@ -2,11 +2,11 @@ const { Sequelize } = require("sequelize");
 const dotenv = require("dotenv");
 dotenv.config();
 const sequelize = new Sequelize(
-  process.dotenv.MYSQL_DATABASE,
-  process.dotenv.MYSQL_USER,
-  process.dotenv.MYSQL_PASSWORD,
+  process.env.MYSQL_DATABASE,
+  process.env.MYSQL_USER,
+  process.env.MYSQL_PASSWORD,
   {
-    host: process.dotenv.MYSQL_HOST,
+    host: process.env.MYSQL_HOST,
     dialect: "mysql",
     /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
   }
